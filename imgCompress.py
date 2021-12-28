@@ -12,24 +12,17 @@ import pandas as pd
 from sklearn.cluster import KMeans
 
 class imgSeg:
-    
-    X = None
-    WCSS = None
-    BCSS = None
-    exp_var = None
-    k_means = None
-    nb_clus = None
-    ori_img = None
-    res_img = None
-    ori_type = None
-    res_pixmap = None
-    k_means_res = None
-    ori_img_size = None
-    res_img_size = None
-    ori_img_n_colors = None
-
     def __init__(self):
-        pass
+        self.X = None
+        self.exp_var = None
+        self.k_means = None
+        self.nb_clus = None
+        self.res_img = None
+        self.res_pixmap = None
+        self.k_means_res = None
+        self.ori_img_size = None
+        self.res_img_size = None
+        self.ori_img_n_colors = None
 
     def setOriImg(self, oriImg):
         self.ori_img = oriImg
@@ -47,9 +40,9 @@ class imgSeg:
     
     def runKMeans(self):
         new_pixels = self.replaceWithCentroid(self.k_means)
-        self.WCSS = self.k_means.inertia_
-        self.BCSS = self.calculateBCSS(self.X, self.k_means)
-        self.exp_var = 100*self.BCSS/(self.WCSS+self.BCSS)
+        WCSS = self.k_means.inertia_
+        BCSS = self.calculateBCSS(self.X, self.k_means)
+        self.exp_var = 100*BCSS/(WCSS+BCSS)
         self.res_img = Image.fromarray(np.uint8(new_pixels))
         self.res_img_size = self.imgByteSize(self.res_img)
         new_pixels = new_pixels[:,:,:3]
