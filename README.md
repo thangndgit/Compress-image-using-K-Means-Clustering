@@ -1,6 +1,7 @@
 #   Compress image using K-Means Clustering
     
     Chương trình giảm dung lượng ảnh, phân cụm theo màu sắc
+    
 #   1. Yêu cầu cài đặt đối với chương trình
 
     Tải và cài đặt Python: https://www.python.org/downloads/
@@ -35,9 +36,9 @@
 
     "Optimal K (base on exp_var)": Tìm K tối ưu theo Explained variance (Từ k = OptimalK trở đi, tốc độ tăng Explained variance theo k chậm lại đáng kể)
 
-    "Optimal K (base on size)": Tìm K tối ưu theo Image size (Từ k = OptimalK trở đi, tốc độ giảm Image size theo k chậm lại đáng kể)
-
     "Custom K": Chọn K để xử lý
+
+    "Max iteration": Số iteration tối đa
 
     "Execute": Bắt đầu xử lý
 

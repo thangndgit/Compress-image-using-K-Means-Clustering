@@ -17,6 +17,7 @@ class imgSeg:
         self.exp_var = None
         self.k_means = None
         self.nb_clus = None
+        self.ori_img = None
         self.res_img = None
         self.res_pixmap = None
         self.k_means_res = None
@@ -34,9 +35,9 @@ class imgSeg:
         self.res_pixmap = None
         self.k_means_res = None
     
-    def setKMeans(self, nbClus):
+    def setKMeans(self, nbClus, maxIter = 10):
         self.nb_clus = nbClus
-        self.k_means = KMeans(n_clusters = nbClus).fit(self.X)
+        self.k_means = KMeans(n_clusters = nbClus, max_iter=maxIter).fit(self.X)
     
     def runKMeans(self):
         new_pixels = self.replaceWithCentroid(self.k_means)
@@ -112,26 +113,3 @@ class imgSeg:
         a, b = m, -1
         dist = np.array([abs(a*x0+b*y0+c)/math.sqrt(a**2+b**2) for x0, y0 in zip(x,y)])
         return np.argmax(dist) + x[0]
-    
-    def calculateDerivative(self, data):
-        derivative = []
-        for i in range(len(data)):
-            if i == 0:
-                # FORWARD DIFFERENCE
-                d = data[i+1] - data[i]
-            elif i == len(data) - 1:
-                # BACKWARD DIFFERENCE
-                d = data[i] - data[i-1]
-            else:
-                # CENTER DIFFERENCE
-                d = (data[i+1] - data[i-1])/2
-            derivative.append(d)
-        return np.array(derivative)
-    
-    def locateDrasticChange(self, x, y):
-        # CALCULATE GRADIENT BY FIRST DERIVATIVE
-        first_derivative = self.calculateDerivative(np.array(y))
-        
-        # CALCULATE CHANGE OF GRADIENT BY SECOND DERIVATIVE
-        second_derivative = self.calculateDerivative(first_derivative)
-        return np.argmax(np.abs(second_derivative)) + x[0]
