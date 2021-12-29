@@ -27,7 +27,6 @@ class imgSeg:
 
     def setOriImg(self, oriImg):
         self.ori_img = oriImg
-        self.ori_type = oriImg.format
         self.X = np.array(oriImg.getdata())
         self.ori_img_size = self.imgByteSize(oriImg)
         self.ori_img_n_colors = len(set(oriImg.getdata()))
@@ -56,10 +55,7 @@ class imgSeg:
     def imgByteSize(self, img):
         img_file = BytesIO()
         image = Image.fromarray(np.uint8(img))
-        if(self.ori_type == "PNG"):
-            image.save(img_file, 'png')
-        elif(self.ori_type == "JPEG"):
-            image.save(img_file, 'jpeg')
+        image.save(img_file, 'png')
         return img_file.tell()/1024
     
     def replaceWithCentroid(self, kmeans):
@@ -72,7 +68,10 @@ class imgSeg:
         return new_pixels
     
     def calculateKMeansResult(self):
-        range_k_cluster = (2, 21)
+        kmax = 21
+        if(self.ori_img_n_colors < 21):
+            kmax = self.ori_img_n_colors
+        range_k_cluster = (2, kmax)
         kmeans_result = []
         for k in range(*range_k_cluster):
             # CLUSTERING
