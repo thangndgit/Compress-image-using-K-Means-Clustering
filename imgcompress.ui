@@ -62,7 +62,7 @@
        <x>0</x>
        <y>10</y>
        <width>701</width>
-       <height>72</height>
+       <height>88</height>
       </rect>
      </property>
      <layout class="QGridLayout" name="lytToolBox">
@@ -75,32 +75,77 @@
       <property name="spacing">
        <number>10</number>
       </property>
-      <item row="2" column="4">
-       <layout class="QHBoxLayout" name="lytMaxIter">
+      <item row="2" column="6">
+       <widget class="QPushButton" name="btnExecute">
+        <property name="text">
+         <string>Execute</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="5">
+       <widget class="Line" name="line6">
+        <property name="orientation">
+         <enum>Qt::Vertical</enum>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="4">
+       <widget class="QPushButton" name="btnShowOri">
+        <property name="text">
+         <string>Show original image</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="6">
+       <widget class="QPushButton" name="btnShowRes">
+        <property name="text">
+         <string>Show compressed image</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="2">
+       <layout class="QHBoxLayout" name="lytRange">
         <item>
-         <widget class="QLabel" name="lblMaxIter">
+         <widget class="QLabel" name="lblFrom">
           <property name="text">
-           <string>Max iteration</string>
+           <string>From</string>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="QSpinBox" name="spinMaxIter">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
+         <widget class="QSpinBox" name="spinFrom">
+          <property name="enabled">
+           <bool>false</bool>
           </property>
           <property name="minimum">
-           <number>10</number>
+           <number>1</number>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="lblTo">
+          <property name="text">
+           <string>to</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QSpinBox" name="spinTo">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <property name="minimum">
+           <number>1</number>
           </property>
          </widget>
         </item>
        </layout>
       </item>
-      <item row="1" column="3">
-       <widget class="Line" name="line2">
+      <item row="1" column="1">
+       <widget class="Line" name="line1">
         <property name="orientation">
          <enum>Qt::Vertical</enum>
         </property>
@@ -113,36 +158,22 @@
         </property>
        </widget>
       </item>
-      <item row="2" column="3">
-       <widget class="Line" name="line5">
+      <item row="1" column="3">
+       <widget class="Line" name="line2">
         <property name="orientation">
          <enum>Qt::Vertical</enum>
         </property>
        </widget>
       </item>
-      <item row="1" column="0">
-       <widget class="QPushButton" name="btnOpen">
-        <property name="text">
-         <string>Open image</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="1">
-       <widget class="Line" name="line1">
-        <property name="orientation">
-         <enum>Qt::Vertical</enum>
-        </property>
-       </widget>
-      </item>
-      <item row="2" column="2">
-       <layout class="QHBoxLayout" name="lytCustomK">
+      <item row="2" column="4">
+       <layout class="QHBoxLayout" name="lytCustom">
         <item>
          <widget class="QRadioButton" name="radioCustomK">
           <property name="text">
            <string>Custom K</string>
           </property>
           <property name="checked">
-           <bool>false</bool>
+           <bool>true</bool>
           </property>
          </widget>
         </item>
@@ -155,16 +186,17 @@
         </item>
        </layout>
       </item>
-      <item row="2" column="0">
-       <widget class="QRadioButton" name="radioElbow">
-        <property name="enabled">
-         <bool>true</bool>
-        </property>
+      <item row="1" column="0">
+       <widget class="QPushButton" name="btnOpen">
         <property name="text">
-         <string>Optimal K (base on EV)</string>
+         <string>Open image</string>
         </property>
-        <property name="checked">
-         <bool>true</bool>
+       </widget>
+      </item>
+      <item row="2" column="3">
+       <widget class="Line" name="line5">
+        <property name="orientation">
+         <enum>Qt::Vertical</enum>
         </property>
        </widget>
       </item>
@@ -182,31 +214,10 @@
         </property>
        </widget>
       </item>
-      <item row="2" column="6">
-       <widget class="QPushButton" name="btnExecute">
+      <item row="2" column="0">
+       <widget class="QRadioButton" name="radioOptimal">
         <property name="text">
-         <string>Execute</string>
-        </property>
-       </widget>
-      </item>
-      <item row="2" column="5">
-       <widget class="Line" name="line6">
-        <property name="orientation">
-         <enum>Qt::Vertical</enum>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="6">
-       <widget class="QPushButton" name="btnShowRes">
-        <property name="text">
-         <string>Show compressed image</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="4">
-       <widget class="QPushButton" name="btnShowOri">
-        <property name="text">
-         <string>Show original image</string>
+         <string>Optimal K (Elbow)</string>
         </property>
        </widget>
       </item>

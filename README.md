@@ -34,11 +34,9 @@
 
     "Show compressed image": Mở hình ảnh đã qua xử lý trong trình xem ảnh
 
-    "Optimal K (base on exp_var)": Tìm K tối ưu theo Explained variance (Từ k = OptimalK trở đi, tốc độ tăng Explained variance theo k chậm lại đáng kể)
+    "Optimal K: Tìm K tối ưu theo phương pháp Elbow
 
     "Custom K": Chọn K để xử lý
-
-    "Max iteration": Số iteration tối đa
 
     "Execute": Bắt đầu xử lý
 
